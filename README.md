@@ -1,70 +1,144 @@
-# Getting Started with Create React App
+Skip Hire Booking Page Redesign
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This README documents the actual changes, component structure, UX/UI improvements, and developer patterns introduced in the redesigned React skip-hire booking page.
 
-## Available Scripts
+🗂 Project Structure
 
-In the project directory, you can run:
+src/
+├── components/
+│ ├── CardGrid.jsx # Parent component: handles filter state and renders skips
+│ ├── OneCard.jsx # Individual skip card with image, price ribbon, details, and select button
+│ ├── OneDetail.jsx # Detail row for skip attributes (title + text)
+│ ├── SkipFilter.jsx # Toggleable filter panel: size dropdown, price range, checkboxes
+│ ├── StepsBar.jsx # Top wizard stepper with icons and responsive mobile labels
+│ └── SvgRenderer.jsx # Wrapper for SVG icons to apply consistent sizing
+├── data/
+│ └── skipsData.json # Static skip options imported as initial data
+├── App.js # Main entry: renders StepsBar and CardGrid
+├── index.js # ReactDOM bootstrap
+└── styles/
+└── components/ # CSS Modules for each component (scoped styles)
 
-### `npm start`
+⚙️ Component Responsibilities
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. StepsBar (StepsBar.jsx)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Renders a horizontal list of steps (Postcode, Waste Type, Select Skip, Permit Check, Choose Date, Payment).
 
-### `npm test`
+Uses imported SVG icons as React components for each step.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Tracks the current step locally (initially set to “Select Skip”).
 
-### `npm run build`
+Applies CSS Modules for active, completed, and mobile-specific styling (e.g., styles.mobileStepNumber).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. CardGrid (CardGrid.jsx)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Imports skipsData.json array of skip objects.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Calculates defaultMin and defaultMax prices for range bounds.
 
-### `npm run eject`
+Holds two pieces of state:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+filters (object): { size, minPrice, maxPrice, heavy, onRoad }.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+filteredSkips (array): recalculated via useEffect whenever filters change.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Renders <SkipFilter /> with all filter props lifted down.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Displays the resulting filteredSkips as a grid of <OneCard />.
 
-## Learn More
+3. SkipFilter (SkipFilter.jsx)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Toggleable panel (displayFilters state) that hides/shows the filter controls.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Size dropdown: populated from skipSizes prop (unique sizes from data).
 
-### Code Splitting
+Price inputs: two <input type="number" /> fields bounded by priceBounds.min/max.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Checkboxes: “Allows heavy waste” and “Allowed on road”, styled via CSS Modules when checked.
 
-### Analyzing the Bundle Size
+Calls onFilterChange(field, value) to update the parent’s filters state.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+4. OneCard (OneCard.jsx)
 
-### Making a Progressive Web App
+Displays each skip with:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Price ribbon overlay showing £{price_before_vat}.
 
-### Advanced Configuration
+Responsive image: chooses between smallSkip.jpg and largeSkip.jpg based on size > 16.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Title: “{size} Yard Skip”.
 
-### Deployment
+Details list: uses <OneDetail /> for each attribute (hire period, transport cost, per-tonne cost, allowed on road, heavy waste).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Select button: <button> to choose the skip (no handler attached in this iteration).
 
-### `npm run build` fails to minify
+5. OneDetail (OneDetail.jsx)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Simple two-line layout: a title and corresponding text.
+
+Purely presentational, using CSS Modules for spacing and typography.
+
+6. SvgRenderer (SvgRenderer.jsx)
+
+Provides a consistent container (div.svgWrapper) for SVG icons.
+
+Accepts a width prop to flexibly size icons (e.g. width="20%").
+
+🎨 UI / UX Enhancements
+
+Scoped CSS Modules
+
+Each component imports its own .module.css file, preventing style collisions and making refactors safer.
+
+Toggleable Filters Panel
+
+Keeps the UI clean by hiding filters behind a button until needed.
+
+Improves mobile usability by collapsing secondary controls.
+
+Responsive Grid Layout
+
+Skip cards flow in a multi-column grid (defined in CardGrid.module.css) and wrap gracefully on smaller screens.
+
+Clear Visual Hierarchy
+
+Price ribbons, card shadows, and hover states guide the user’s attention to key actions.
+
+Buttons and interactive areas use consistent spacing and typography from CSS Modules.
+
+Accessible Alt Text & Labels
+
+Images include alt="{size} yard skip" for screen readers.
+
+Form controls are labeled, and checkboxes visually indicate the checked state.
+
+SVG Icon Handling
+
+Icons are imported as React components and wrapped for uniform sizing.
+
+Enables easy swap of icon colors via CSS on the parent .svgWrapper class.
+
+🚀 Next Steps / Enhancements
+
+Event Handlers on the “Select this skip” buttons to integrate with booking flow.
+
+Persisting Filter State in URL parameters or local storage for shareable links.
+
+Dark Mode support by extending CSS Modules with :global(.dark) selectors.
+
+Unit / Snapshot Tests for each component using Jest + React Testing Library.
+
+Lazy Loading Images with the native loading="lazy" attribute or an IntersectionObserver wrapper.
+
+🛠 Running Locally
+
+Install dependencies:
+
+npm install
+
+Start development server:
+
+npm start
+
+Visit http://localhost:3000 to explore the redesigned skip hire page.

@@ -16,9 +16,10 @@ body {
   --slight-background-color: rgba(162, 168, 175, 0.1);
 
   --border-color: rgb(98, 107, 117);
-  --slight-border-color: rgba(98, 107, 117, 0.5);
+  --slight-border-color: rgba(98, 107, 117, 0.1);
 
   --slight-box-shadow: rgba(0, 0, 0, 0.1);
+  --secondary-box-shadow: rgba(255, 136, 0, 0.35);
 }
 
 code {

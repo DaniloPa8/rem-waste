@@ -1,4 +1,4 @@
-.OneDetailWrapper {
+.oneDetailWrapper {
   width: 100%;
   display: flex;
   box-shadow: 0 2px 1px 0px var(--slight-box-shadow);
@@ -9,15 +9,15 @@
   margin: 5px 0;
 }
 
-.OneDetailTitleContainer,
-.OneDetailTextContainer {
+.oneDetailTitleContainer,
+.oneDetailTextContainer {
   width: 50%;
   display: flex;
   justify-content: center;
   padding: 2px 5px;
 }
 
-.OneDetailTitleContainer {
+.oneDetailTitleContainer {
   position: relative;
   font-weight: 500;
 }
@@ -31,13 +31,13 @@
   background-color: var(--secondary-color);
 } */
 
-.OneDetailText,
-.OneDetailTitle {
+.oneDetailText,
+.oneDetailTitle {
   text-align: center;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .OneDetailWrapper:hover {
+  .oneDetailWrapper:hover {
     /* background-color: var(--slight-background-color); */
     box-shadow: 0 2px 1px 0px var(--secondary-color);
     transition: 500ms;

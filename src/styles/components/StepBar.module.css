@@ -1,4 +1,4 @@
-.BarWrapper {
+.barWrapper {
   display: flex;
   flex-direction: column;
   max-width: 10vw;
@@ -12,25 +12,25 @@
   z-index: 1;
 }
 
-.ActiveStep {
+.activeStep {
   background-color: var(--secondary-color);
   position: relative;
 }
 
-.ActiveStep::after {
+.activeStep::after {
   content: "";
   position: absolute;
-  bottom: -8px; /* attach below */
+  bottom: -3px; /* attach below */
   left: 50%;
   transform: translateX(-50%) translateY(40%);
   width: 0;
   height: 0;
-  border-left: 5vw solid transparent;
-  border-right: 5vw solid transparent;
-  border-top: 1vw solid var(--secondary-color);
+  border-left: 11vw solid transparent;
+  border-right: 11vw solid transparent;
+  border-top: 3vw solid var(--secondary-color);
 }
 
-.OneStep {
+.oneStep {
   display: flex;
   flex-direction: row;
   height: 100%;
@@ -40,33 +40,34 @@
   border-bottom: 1px solid var(--slight-border-color);
 }
 
-.DisabledStep {
+.disabledStep {
   cursor: not-allowed;
 }
 
-.TakenStep {
+.takenStep {
   background-color: var(--secondary-color);
 }
 
-.StepText {
+.stepText {
   width: 80%;
   margin: auto 10px;
   text-align: center;
 }
 
-.MobileStepNumber {
+.mobileStepNumber,
+.mobileBackButton {
   display: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .TakenStep:hover {
+  .takenStep:hover {
     background-color: var(--slight-background-color);
     transition: 500ms;
   }
 }
 
 @media screen and (max-width: 800px) {
-  .BarWrapper {
+  .barWrapper {
     position: unset;
     flex-direction: row;
     flex-wrap: wrap;
@@ -77,7 +78,7 @@
     position: relative;
   }
 
-  .MobileBackButton {
+  .mobileBackButton {
     position: absolute;
     left: 20px;
     top: 50%;
@@ -91,7 +92,7 @@
     border: 1px solid var(--primary-color);
   }
 
-  .MobileBackButton::after {
+  .mobileBackButton::after {
     content: "";
     position: absolute;
     top: 50%; /* attach below */
@@ -104,32 +105,32 @@
     border-right: 4vw solid var(--primary-color);
   }
 
-  .OneStep {
-    padding: 10px 100px;
+  .oneStep {
+    padding: 10px 90px;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
   }
 
-  .ActiveStep::after {
+  .activeStep::after {
     display: none;
   }
 
-  .DisabledStep {
+  .disabledStep {
     display: none;
   }
-  .TakenStep {
+  .takenStep {
     display: none;
   }
-  .ActiveStep {
+  .activeStep {
     width: 100%;
   }
 
-  .StepText {
+  .stepText {
     font-weight: 600;
   }
 
-  .MobileStepNumber {
+  .mobileStepNumber {
     display: flex;
     width: 100%;
     text-align: center;

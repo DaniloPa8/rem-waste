@@ -1,18 +1,18 @@
-.Main {
+.main {
   display: flex;
 }
 
-.ContentWrapper {
+.contentWrapper {
   margin-left: 10vw;
   width: 90vw;
 }
 
 @media screen and (max-width: 800px) {
-  .Main {
+  .main {
     flex-direction: column;
   }
 
-  .ContentWrapper {
+  .contentWrapper {
     margin-left: 0;
     width: 100vw;
   }

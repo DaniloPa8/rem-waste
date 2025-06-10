@@ -1,26 +1,27 @@
-import "./../styles/components/OneCard.css";
-import SmallSkipImage from "./../resources/smallSkip.jpg";
-import LargeSkipImage from "./../resources/largeSkip.jpg";
+import styles from "styles/components/OneCard.module.css";
+import SmallSkipImage from "resources/smallSkip.jpg";
+import LargeSkipImage from "resources/largeSkip.jpg";
+
 import { OneDetail } from "./OneDetail";
 
 export const OneCard = ({ skip }) => {
   return (
-    <div className="OneSkipWrapper">
-      <div className="SkipImageWrapper">
-        <div className="PriceRibbon">
-          <span className="PriceText">£{skip.price_before_vat}</span>
+    <div className={styles.oneSkipWrapper}>
+      <div className={styles.skipImageWrapper}>
+        <div className={styles.priceRibbon}>
+          <span className={styles.priceText}>£{skip.price_before_vat}</span>
         </div>
         <img
-          className="SkipImage"
-          alt="Skip"
+          className={styles.skipImage}
+          alt={`${skip.size} yard skip`}
           src={skip?.size > 16 ? LargeSkipImage : SmallSkipImage}
         />
       </div>
-      <div className="TitleSection">
-        <span className="SkipTitle">{skip.size} Yard Skip</span>
+      <div className={styles.titleSection}>
+        <span className={styles.skipTitle}>{skip.size} Yard Skip</span>
       </div>
-      <div className="DetailsSection">
-        <div className="DetailsList">
+      <div className={styles.detailsSection}>
+        <div className={styles.detailsList}>
           {skip.hire_period_days && (
             <OneDetail
               title={"Hire period"}
@@ -53,7 +54,7 @@ export const OneCard = ({ skip }) => {
           )}
         </div>
       </div>
-      <button className="orderButton">Select this skip</button>
+      <button className={styles.orderButton}>Select this skip</button>
     </div>
   );
 };
