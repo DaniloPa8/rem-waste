@@ -24,8 +24,7 @@
   color: var(--secondary-color);
   padding: 0px 15px;
   font-size: 1rem;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+
   margin: 10px auto;
   /* box-shadow: 0 2px 5px 1px var(--slight-box-shadow); */
   cursor: pointer;
@@ -161,6 +160,8 @@
     height: max-content;
     margin: auto;
     padding: 20px 30px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
   }
   .oneCheckbox {
     margin: 10px;

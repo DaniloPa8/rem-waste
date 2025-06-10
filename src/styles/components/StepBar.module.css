@@ -32,11 +32,12 @@
 
 .oneStep {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   height: 100%;
   padding: 10px;
   color: var(--primary-color);
   cursor: pointer;
+  justify-content: center;
   border-bottom: 1px solid var(--slight-border-color);
 }
 
@@ -50,7 +51,7 @@
 
 .stepText {
   width: 80%;
-  margin: auto 10px;
+  margin: 10px auto;
   text-align: center;
 }
 
@@ -128,6 +129,7 @@
 
   .stepText {
     font-weight: 600;
+    width: 100%;
   }
 
   .mobileStepNumber {
