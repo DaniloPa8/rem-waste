@@ -1,0 +1,17 @@
+.SvgWrapper {
+  display: flex;
+}
+
+.SvgWrapper svg {
+  width: 20px;
+  height: 20px;
+  margin: auto;
+  fill: currentColor;
+}
+
+@media screen and (max-width: 800px) {
+  .SvgWrapper svg {
+    width: 30px;
+    height: 30px;
+  }
+}

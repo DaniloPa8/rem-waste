@@ -1,0 +1,19 @@
+.Main {
+  display: flex;
+}
+
+.ContentWrapper {
+  margin-left: 10vw;
+  width: 90vw;
+}
+
+@media screen and (max-width: 800px) {
+  .Main {
+    flex-direction: column;
+  }
+
+  .ContentWrapper {
+    margin-left: 0;
+    width: 100vw;
+  }
+}

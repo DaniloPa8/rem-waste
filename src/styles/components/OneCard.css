@@ -1,0 +1,105 @@
+.OneSkipWrapper {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  /* background-color: red; */
+  width: 25%;
+  margin: 20px 40px;
+  padding: 15px;
+  box-shadow: 0 5px 15px 2px var(--slight-box-shadow);
+  transition: 500ms;
+}
+
+.SkipImageWrapper {
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+.SkipImage {
+  width: 100%;
+  height: auto;
+  box-shadow: 0 -2px 5px 2px var(--slight-box-shadow);
+}
+
+.PriceRibbon {
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 120px;
+  background-color: var(--secondary-color);
+  padding: 10px 30px;
+  box-shadow: 0 5px 5px 2px var(--slight-box-shadow);
+  z-index: 2;
+  transition: 300ms;
+}
+
+.PriceText {
+  color: var(--primary-font-color);
+  font-size: 1.5rem;
+  font-weight: 600;
+  transition: 300ms;
+}
+
+.TitleSection {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.SkipTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  width: max-content;
+}
+
+.DetailsList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 10px auto;
+}
+
+.orderButton {
+  background-color: var(--secondary-color);
+  border: 0;
+  padding: 15px 30px;
+  margin: 10px auto;
+  color: var(--primary-font-color);
+  font-weight: 600;
+  font-size: 1.25rem;
+  transition: 300ms;
+  cursor: pointer;
+  margin-top: auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .OneSkipWrapper:hover {
+    box-shadow: 0 8px 10px 10px var(--slight-box-shadow);
+    transition: 500ms;
+    cursor: default;
+  }
+
+  .PriceRibbon:hover {
+    transform: translateX(-50%) translateY(10%);
+    transition: 300ms;
+  }
+
+  .PriceRibbon:hover .PriceText {
+    font-size: 2rem;
+    transition: 300ms;
+  }
+
+  .orderButton:hover {
+    transform: scale(1.025);
+    box-shadow: 0 2px 4px 2px var(--slight-box-shadow);
+    transition: 300ms;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .OneSkipWrapper {
+    width: 90%;
+  }
+}
