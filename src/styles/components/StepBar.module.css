@@ -27,7 +27,7 @@
   height: 0;
   border-left: 11vw solid transparent;
   border-right: 11vw solid transparent;
-  border-top: 3vw solid var(--secondary-color);
+  border-top: 5vh solid var(--secondary-color);
 }
 
 .oneStep {
